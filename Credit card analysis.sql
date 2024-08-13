@@ -19,7 +19,10 @@ Create Table Facts_spends
 
 SELECT 
     COUNT(DISTINCT customers.customer_id) AS customer_count from customers;
-
+------
+select count(*) from customers;
+----
+select Customer_id, occupation from customers;
 
 ----DISTIBUTION BY OCCUPATION that do not use Credit cards--
 
@@ -27,12 +30,12 @@ Select distinct occupation from customers;
 
 --Percentage of customers per occupuation--
 
-Select occupation, count (*) * 100.0 / (select count(*) from customers) as Percentage,
-count (occupation) as total
+Select count(*) * 100.0 / (select count(*) from customers) as Percentage, occupation,
+count(occupation) as total
 from Customers
-where Payment_type != 'Credit Cards'
 group by occupation
 order by percentage DESC;
+
 
 ---DISTRIBUTION BY AGE---
 
@@ -96,20 +99,31 @@ order by Average_income_utilization DESC;
 
 ---SPENDING INSIGHTS-----
 
--- Total spent by category---
+-- Total spent by category for non credit card users---
 
-Select Category, AVG(spend) as average_spend
+Select Category, AVG(spend) as average_spend, Category
 from facts_spends
+where payment_type != 'Credit Card'
 group by category
 order by average_spend DESC;
 
--- the average income utilization, the higher, the more likely Credit cards will be used--
+---the average income utilization of Credit cards users--
 
-Select payment_type, (avg(spend)/ avg_income)* 100 as average_income_utilization
+Select customers.customer_id, payment_type, (avg(spend)/ avg_income)* 100 as average_income_utilization
+from facts_spends
+join customers on customers.customer_id = facts_spends.customer_id
+where payment_type = 'Credit Card'
+group by customers.avg_income, facts_spends.payment_type, customers.customer_id
+order by average_income_utilization DESC;
+
+-- The average income utilization per customer_id and their categories.
+---The higher, the more likely Credit cards will be used--
+
+Select customers.customer_id, payment_type, (avg(spend)/ avg_income)* 100 as average_income_utilization, Category
 from facts_spends
 join customers on customers.customer_id = facts_spends.customer_id
 where payment_type != 'Credit Card'
-group by customers.avg_income, facts_spends.payment_type
+group by customers.avg_income, facts_spends.payment_type, customers.customer_id, facts_spends.category
 order by average_income_utilization DESC;
 
 ----- Non credit card users' average income utilization-------
@@ -125,7 +139,8 @@ GROUP BY
     customers.customer_id, customers.avg_income, Customers.gender, customers.age_group, customers.occupation, 
 	Customers.Marital_status, customers.City, facts_spends.payment_type
 HAVING 
-    (AVG(facts_spends.spend) / customers.avg_income) * 100 > 2.1;
+    (AVG(facts_spends.spend) / customers.avg_income) * 100 > 2.1
+order by average_income_utilization DESC;
 
 -----Create view of non credit card users----
 
@@ -141,7 +156,8 @@ GROUP BY
     customers.customer_id, customers.avg_income, Customers.gender, customers.age_group, customers.occupation, 
 	Customers.Marital_status, customers.City, facts_spends.payment_type
 HAVING 
-    (AVG(facts_spends.spend) / customers.avg_income) * 100 > 2.1;
+    (AVG(facts_spends.spend) / customers.avg_income) * 100 > 2.1
+order by average_income_utilization DESC;
 	
 	
 
@@ -194,6 +210,14 @@ from facts_spends
 join customers on customers.customer_id = facts_spends.customer_id
 where payment_type != 'Credit Card'
 group by Marital_status, avg_income, payment_type
+order by average_income_utilization DESC;
+
+---Spending by Category---
+Select Category, (AVG(spend)/avg_income)* 100 as average_income_utilization, payment_type
+from facts_spends
+join customers on customers.customer_id = facts_spends.customer_id
+where payment_type != 'Credit Card'
+group by Category, avg_income, payment_type
 order by average_income_utilization DESC;
 
 
