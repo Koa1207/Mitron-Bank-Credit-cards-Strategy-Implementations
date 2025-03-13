@@ -1,9 +1,12 @@
-#Mitron Bank's Credit card check
+Mitron Bank's Credit card check
 
 Business scope:
 
-Mitron Bank is a legacy financial institution headquartered in Hyderabad. They want to introduce a new line of credit cards, aiming to broaden its product offerings and reach in the financial market.
+Mitron Bank is a legacy financial institution headquartered in Hyderabad. Our goal is to introduce a new line of credit cards, aiming to broaden our product offerings and reach in the financial market.
 A sample dataset of 4000 customers across five cities on their online spend and other details has been provided.
+
+Table of contents:
+
 
 Ojectives:
 
