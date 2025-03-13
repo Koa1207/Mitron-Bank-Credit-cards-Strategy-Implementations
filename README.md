@@ -6,6 +6,8 @@ Mitron Bank is a legacy financial institution headquartered in Hyderabad. Our go
 A sample dataset of 4000 customers across five cities on their online spend and other details has been provided.
 
 ## Table of contents:
+-[Excecuutive Summary(#Executive Summary)
+-[Our Objectives](# Our Objectives)
 
 
 
