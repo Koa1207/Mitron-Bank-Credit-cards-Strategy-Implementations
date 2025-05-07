@@ -22,15 +22,15 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 
 ## Our Ojectives:
 
-Demographic classification: Classify the customers based on available demography such as age group, gender, occupation etc. and provide insights based on them. 
+- Demographic classification: Classify customers based on demographic attributes such as age group, gender, and occupation to uncover behavioral patterns and potential target groups. 
 
-Avg income utilisation %: The higher the average income utilisation percentage, the more is their likelihood to use credit cards.
+- Avg income utilisation %: Analyze the average income utilization percentage to assess the likelihood of credit card usage among different customer segments.
 
-Spending Insights: Where do people spend money the most? This can guide developers to add relevant credit card features for specific target groups.
+- Spending Insights: Identify major spending categories and trends to inform the design of credit card features tailored to customer needs.
 
-Key Customer Segments: Identify and profile key customer segments that are likely to be the highest-value users of the new credit cards. 
+- Key Customer Segments: Identify and profile high-value customer segments with the greatest potential for credit card adoption and usage.
 
-## Promary KPI's
+## Primary KPI's
 
 
 
