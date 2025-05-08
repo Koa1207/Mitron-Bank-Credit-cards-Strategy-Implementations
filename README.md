@@ -31,6 +31,9 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - Key Customer Segments: Identify and profile high-value customer segments with the greatest potential for credit card adoption and usage.
 
 ## Primary KPI's
+- Customer Segmentation 
+- Average income utilisation
+- Top spending Category 
 
 
 
