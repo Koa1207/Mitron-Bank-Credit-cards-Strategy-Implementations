@@ -36,7 +36,7 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - Top 5 spending Category
 - High-Value Customer segment share
 
-## Findins and Analysis
+## Findings and Analysis
 
 ### Dashboard
 Here is a snippet of the deashboard made using excel. To access it click here
