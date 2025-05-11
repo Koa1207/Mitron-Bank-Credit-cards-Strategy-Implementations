@@ -1,6 +1,6 @@
 # Mitron Bank's Credit card check
 
-Business scope:
+## Introduction 
 
 Mitron Bank is a legacy financial institution headquartered in Hyderabad. Our goal is to introduce a new line of credit cards, aiming to broaden our product offerings and reach in the financial market.
 A sample dataset of 4000 customers across five cities on their online spend and other details has been provided.
@@ -36,15 +36,21 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - Top 5 spending Category
 - High-Value Customer segment share
 
+## Findins and Analysis
 
-## Dashboard
+### Dashboard
 Here is a snippet of the deashboard made using excel. To access it click here
 
-## Insights
 ### Credit Card Adoption Rate by Demographic Segment
 ### Average income utilisation
-### Top 5 spending Category
+### Spendin Insights
 ### High-Value Customer segment share
+
+## Recommendations
+
+## Conclusions
+ (summary of insights, potential impact on market expansion)
+ (Next steps: A/B testing, customer feedback)
 
 
 
