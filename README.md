@@ -39,7 +39,7 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 ## Findings and Analysis
 
 ### Dashboard
-Here is a snippet of the deashboard made using excel. To access it click here
+Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
 
 ### Credit Card Adoption Rate by Demographic Segment
 ### Average income utilisation
