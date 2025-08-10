@@ -14,7 +14,7 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - [Recommendations](#recommendations)
 - [Caveats](#Caveats)
 
-  ## Executive Summary
+## Executive Summary
    This report presents key insights into consumer income utilization and payment behaviour to guide targeted credit card adoption strategies. The analysis covers age   demographics, occupation types, geographic trends, and category-specific spending preferences, identifying prime customer segments for credit card campaigns. 
 
 
@@ -38,7 +38,7 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - Top 5 spending Category
 - High-Value Customer segment share
 
-## Findings and Analysis
+## Insights
 
 ### Dashboard
 Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
