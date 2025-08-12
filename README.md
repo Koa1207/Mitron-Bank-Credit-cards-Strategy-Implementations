@@ -13,14 +13,11 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - [Insights](#insights)
 - [Recommendations](#recommendations)
 - [Caveats](#Caveats)
-
+  
 ## Executive Summary
-   This report presents key insights into consumer income utilization and payment behaviour to guide targeted credit card adoption strategies. The analysis covers age   demographics, occupation types, geographic trends, and category-specific spending preferences, identifying prime customer segments for credit card campaigns. 
-
-
-
-
-
+This project aims to identify key customer segments and spending behaviours to guide the launch of Mitron Bank’s new credit card line. Through detailed analysis of demographic profiles, income utilisation patterns, payment method preferences, and category-level spending, the study provides actionable insights to maximise credit card adoption and usage.
+Findings reveal that customers aged 25–45, particularly IT professionals and freelancers in Mumbai and Delhi NCR, highlight the highest adoption potential for the new line of credit cards. Credit cards dominate high-value categories such as Bills and Electronics, while Groceries remain UPI-heavy, signalling an untapped conversion opportunity. Younger customers (21–24) display high entertainment and UPI spending, while older groups (35–45 and 45+) favour debit and net banking, requiring tailored reward propositions.
+The strategic recommendations focus on category-specific rewards, payment method shift incentives, and geographic targeting to align product features with customer needs. By leveraging these insights, Mitron Bank can design compelling credit card offerings that not only drive immediate adoption but also foster long-term engagement and loyalty.
 
 ## Our Ojectives:
 
