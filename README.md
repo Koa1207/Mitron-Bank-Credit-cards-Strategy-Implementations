@@ -33,7 +33,7 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - Key Customer Segments: Identify and profile high-value customer segments with the greatest potential for credit card adoption and usage.
 
 ## Primary KPI's
-- Credit Card Adoption Rate by Demographic Segment
+- Demographic Segment
 - Average income utilisation
 - Top 5 spending Category
 - High-Value Customer segment share
@@ -43,41 +43,53 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 ### Dashboard
 Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
 
-## 1. Credit Card Adoption Rate by Demographic Segment
+## 1. Demographic Segment
 
 #### 1.1 Age Group Analysis
 35–45 years: Highest adoption potential with average income utilisation of 1.336%.
 25–34 years: Second highest at 1.259%; also highly engaged across UPI transactions.
 45+ years: Lowest adoption potential at 0.996%.
 #### 1.2 Occupation-Based Trends
-IT Professionals: 1.422% average income utilisation — highest among all occupational groups.
-Other Salaried Employees: 1.319%, indicating strong but slightly lower adoption potential than IT professionals.
+IT Professionals: 1.44% average income utilisation — highest among all occupational groups.
+Freelancers: 1.29%, indicating strong but slightly lower adoption potential than IT professionals.
 #### 1.3 Geographic Performance
-Mumbai: 1.49% average income utilisation — highest city-level potential.
-Delhi NCR: 1.38% utilisation — strong secondary target market.
+Mumbai: 1.90% average income utilisation — highest city-level potential.
+Delhi NCR: 1.30% utilisation — strong secondary target market.
 Chennai: 0.90% utilisation — lowest, requiring tailored strategies.
 
 
 ## 2. Average Income Utilisation Overview
 #### 2.1 By Age Group
-35–45: 1.336%
-25–34: 1.259%
-45+: 0.996%
+35–45: 1.29%
+21-24: 1.24%
+25–34: 1.21%
+45+: 0.98%
 #### 2.2 By Occupation
-IT Professionals: 1.422%
-Other Salaried Employees: 1.319%
+IT Professionals: 1.44%
+Freelancer: 1.29%
+Other Salaried Employees: 1.19%
+Business Owners: 0.93%
+Government Employees: 0.82%
 #### 2.3 By City
-Mumbai: 1.49%
-Delhi NCR: 1.38%
+Mumbai: 1.90%
+Delhi NCR: 1.30%
+Bengaluru: 1.21%
+Hyderabad: 1.01%
 Chennai: 0.90%
 
 
 ## 3. Top 5 Spending Categories (Credit Card)
-Bills – ₹22.8K
-Electronics – ₹16K
-Travel – ₹14.9K
+Bills – ₹2,378,392 at 17.52%
+Electronics – ₹2,167,311 at 15.97%
+Groceries - ₹1,963,452 at 14.96%
 
-Insight: Credit cards dominate spending in these top categories, with significant gaps between credit card and non-credit card usage, presenting opportunities for reward-based features like cashback and travel benefits.
+Insight:
+
+Bills are dominated by the age group 25-34
+Electronics are dominated by the age group 21-24
+Groceries are dominated by age group 25-34 and the payment type UPI
+
+Credit cards dominate spending in the top two categories as well as the rest, with significant gaps between credit card and non-credit card usage, presenting opportunities for reward-based features like cashback and travel benefits.
 
 
 ## 4. High-Value Customer Segment Share
