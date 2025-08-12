@@ -11,8 +11,8 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 - [Our Objectives](#objectives)
 - [Primary KPI's](#Kpi's)
 - [Insights](#insights)
-- [Recommendations](#recommendations)
-- [Caveats](#Caveats)
+- [Stratgeic Recommendations](#recommendations)
+
   
 ## Executive Summary
 This project aims to identify key customer segments and spending behaviours to guide the launch of Mitron Bank’s new credit card line. Through detailed analysis of demographic profiles, income utilisation patterns, payment method preferences, and category-level spending, the study provides actionable insights to maximise credit card adoption and usage.
@@ -32,7 +32,7 @@ The strategic recommendations focus on category-specific rewards, payment meth
 ## Primary KPI's
 - Demographic Segment
 - Average income utilisation
-- Top 5 spending Category
+- Top 3 spending Category
 - High-Value Customer segment share
 
 ## Insights
@@ -80,7 +80,7 @@ Average income utilisation reflects the capacity and willingness to use credit. 
 
 
 
-## 3. Top 5 Spending Categories
+## 3. Top 3 Spending Categories
 
 
 
