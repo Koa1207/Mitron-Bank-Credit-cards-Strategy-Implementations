@@ -40,7 +40,6 @@ The strategic recommendations focus on category-specific rewards, payment meth
 ### SQL Queries
 
 
-
 ### Dashboard
 Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
 
