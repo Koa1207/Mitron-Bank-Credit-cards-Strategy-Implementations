@@ -37,7 +37,6 @@ The strategic recommendations focus on category-specific rewards, payment meth
 
 ## Insights
 
-### SQL Queries
 
 
 ### Dashboard
@@ -65,7 +64,7 @@ Average income utilisation reflects the capacity and willingness to use credit. 
 - 35–45: 1.29%
 - 21–24: 1.24%
 - 25–34: 1.21%
-- 45+: 0.98%
+- 45+  : 0.98%
 ### By Occupation
 - IT Professionals: 1.44%
 - Freelancers: 1.29%
