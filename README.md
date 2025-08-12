@@ -43,82 +43,104 @@ A sample dataset of 4000 customers across five cities on their online spend and 
 ### Dashboard
 Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
 
-## 1. Demographic Segment
-
-#### 1.1 Age Group Analysis
-35–45 years: Highest adoption potential with average income utilisation of 1.336%.
-25–34 years: Second highest at 1.259%; also highly engaged across UPI transactions.
-45+ years: Lowest adoption potential at 0.996%.
-#### 1.2 Occupation-Based Trends
-IT Professionals: 1.44% average income utilisation — highest among all occupational groups.
-Freelancers: 1.29%, indicating strong but slightly lower adoption potential than IT professionals.
-#### 1.3 Geographic Performance
-Mumbai: 1.90% average income utilisation — highest city-level potential.
-Delhi NCR: 1.30% utilisation — strong secondary target market.
-Chennai: 0.90% utilisation — lowest, requiring tailored strategies.
+## 1. Demographic Segment Analysis
+### 1.1 Age Group Spending Patterns
+- 21–24 years: Spend most on entertainment (24.68%), with credit cards as the dominant payment method, closely followed by UPI.
+- 25–34 years: Bills dominate spending (22.16%) with credit cards as the primary payment method.
+- 35–45 years: Bills are also dominant (21.66%), but debit cards feature more strongly alongside credit cards.
+- 45+ years: Bills lead spending (22.51%) with credit cards followed by debit cards.
+### 1.2 Occupation-Based Trends
+- IT Professionals: Highest average income utilisation (1.44%), indicating strong credit adoption potential.
+- Freelancers: 1.29% utilisation, showing good adoption potential.
+### 1.3 Geographic Performance
+- Mumbai: 1.90% average income utilisation — highest market potential.
+- Delhi NCR: 1.30% utilisation — strong secondary target.
+- Chennai: 0.90% utilisation — lowest; requires awareness-building campaigns.
 
 
 ## 2. Average Income Utilisation Overview
-#### 2.1 By Age Group
-35–45: 1.29%
-21-24: 1.24%
-25–34: 1.21%
-45+: 0.98%
-#### 2.2 By Occupation
-IT Professionals: 1.44%
-Freelancer: 1.29%
-Other Salaried Employees: 1.19%
-Business Owners: 0.93%
-Government Employees: 0.82%
-#### 2.3 By City
-Mumbai: 1.90%
-Delhi NCR: 1.30%
-Bengaluru: 1.21%
-Hyderabad: 1.01%
-Chennai: 0.90%
+Average income utilisation reflects the capacity and willingness to use credit. Higher utilisation signals readiness for credit card adoption.
+### By Age Group
+
+- 35–45: 1.29%
+- 21–24: 1.24%
+- 25–34: 1.21%
+- 45+: 0.98%
+### By Occupation
+- IT Professionals: 1.44%
+- Freelancers: 1.29%
+- Other Salaried Employees: 1.19%
+- Business Owners: 0.93%
+- Government Employees: 0.82%
+### By City
+- Mumbai: 1.90%
+- Delhi NCR: 1.30%
+- Bengaluru: 1.21%
+- Hyderabad: 1.01%
+- Chennai: 0.90%
 
 
-## 3. Top 5 Spending Categories (Credit Card)
-Bills – ₹2,378,392 at 17.52%
-Electronics – ₹2,167,311 at 15.97%
-Groceries - ₹1,963,452 at 14.96%
-
-Insight:
-
-Bills are dominated by the age group 25-34
-Electronics are dominated by the age group 21-24
-Groceries are dominated by age group 25-34 and the payment type UPI
-
-Credit cards dominate spending in the top two categories as well as the rest, with significant gaps between credit card and non-credit card usage, presenting opportunities for reward-based features like cashback and travel benefits.
 
 
-## 4. High-Value Customer Segment Share
-#### 4.1 Category-Based High Spenders
-Bills, Electronics, and Travel: Show the largest gap in favor of credit card usage, indicating prime potential for targeted rewards programs.
-#### 4.2 Payment Behavior by Age
-25–34: Highest UPI spending, active in digital payments, strong cross-sell potential for credit cards.
-35–45: Highest Debit Card and Net Banking spending, coupled with strong credit card usage potential.
-21–24: Lowest spending across all non-credit payment types, indicating lower immediate priority.
+
+## 3. Top 5 Spending Categories
+
+
+
+|Rank|	Category  |	Spend Value |	Share (%)|	Dominant Age Group|	Dominant Payment Method|
+|--- |-----------  |----------   |-----------|--------------------|-------------------------|
+|1	  |      Bills  |	₹2,378,392  |	17.52%   |	25–34	            |    Credit Card          |
+|2	  | Electronics |₹2,167,311   |	15.97%	|  21–24	            |  Credit Card            |
+|3	  |Groceries    |	₹1,963,452  |	14.96%   |	25–34	            |      UPI                |
+
+
+- Credit cards dominate Bills and Electronics categories, presenting strong potential for targeted cashback or points programs.
+- Groceries are dominated by UPI payments, signalling a conversion opportunity with rewards designed for everyday purchases.
+
+### 4.1 Category-Based High Spenders (Credit Card)
+- Bills and Electronics show the largest usage gap in favour of credit cards.
+- Groceries rank third in spend share but are UPI-dominated.
+### 4.2 Payment Behaviour by Age
+- 21–24: Highest spend via UPI (37.11%).
+- 25–34: Highest spend via credit cards.
+- 35–45: Highest spend via debit cards (35.38%).
+- 45+: Highest spend via net banking (19.69%).
+#### Non-Credit Card Users:
+- Top category is Groceries (16.87%), dominated by UPI (8.56%).
+- Bills (16.30%) — debit card dominant (7.08%).
+- Electronics (15.24%) — UPI dominant (7.47%).
+
+
+
+
+
+
 
 ## 5. Strategic Recommendations
-### Target Segments:
-Age: 25–45 years.
-Occupation: Salaried IT professionals and other salaried employees.
-Location: Mumbai and Delhi NCR.
-Product Design:
-Reward-heavy products focusing on Bills, Electronics, and Travel.
-Cashback and travel miles programs to appeal to high-spending customers.
-### Channel Strategy:
-Leverage UPI and Net Banking channels for cross-promotion.
-Deploy digital-first campaigns to reach tech-savvy, financially active users.
+### 1. Target High-Potential Segments
+   - Age 25–45 in Mumbai and Delhi NCR, especially IT professionals and freelancers.
+   - Emphasise benefits for everyday spending (Bills, Groceries) and high-ticket items (Electronics).
+     
+ ### 2. Category-Specific Reward Design
+   - Bills & Electronics: Offer high cashback rates or accelerated reward points to reinforce existing credit card dominance.
+   - Groceries: Create UPI-to-credit conversion incentives (e.g., double points or cashback when paying with the card instead of UPI).
+     
+### 3. Payment Method Shift Campaigns
+   - For 21–24 and 35–45 groups with high UPI/Debit usage, launch “Switch & Save” campaigns showing benefits of credit card use over existing methods.
+### 4.Geographic Prioritisation
+   - Mumbai → aggressive acquisition campaigns.
+   - Delhi NCR → strengthen category-specific promotions.
+   - Chennai → education-based campaigns to build trust and familiarity with credit card benefits.
+### 5. Segment-Specific Products
+  - Lifestyle cards for 21–24 targeting entertainment, electronics, and online retail.
+  -Utility & travel rewards for 35–45.
+  -Essential-spend cashback cards for 45+ focusing on bills and groceries.
 
 
 ## Conclusions
-The data clearly points toward a focused, high-ROI growth opportunity by targeting salaried IT professionals, particularly those aged 25–34 in Mumbai and Chennai, who demonstrate strong income utilization and spend heavily in bills, electronics, groceries, and travel. A tailored product strategy that offers category-specific rewards, lifestyle perks, and higher credit limits for engaged users will both attract and retain this core segment.
+The analysis reveals that credit card adoption potential is concentrated among 25–45-year-old customers, particularly IT professionals and freelancers in high-utilisation markets like Mumbai and Delhi NCR. Spending behaviour shows a clear dominance of credit cards in high-value categories such as Bills and Electronics, while Groceries remain largely UPI-driven, representing a strong opportunity for conversion. Age-specific patterns highlight that younger customers (21–24) lean heavily on UPI for discretionary spending, while older segments (35–45 and 45+) display stronger ties to debit and net banking, suggesting tailored reward structures are essential to drive behavioural shifts.
 
-The 35–45 age group presents a lucrative secondary market, with high spending power and strong utilization, especially in bills, health/wellness, and electronics. Leveraging premium benefits, healthcare tie-ins, and upgrade campaigns will maximize their lifetime value.
-
-By executing a geographically phased rollout—starting with Mumbai, expanding to Chennai, and then building penetration in underdeveloped markets like Hyderabad—the company can efficiently scale adoption while optimizing marketing spend. Combined with digital-first onboarding, personalized offers, and utilization-based rewards, this approach positions the new credit card line to rapidly increase engagement and strengthen brand loyalty in the competitive financial services landscape.
+By aligning rewards programs with category-specific spending trends and targeting segments with both high utilisation capacity and strong spending activity, Mitron Bank can maximise credit card usage, increase customer loyalty, and capture greater share across key markets. Strategic emphasis on category-based incentives, digital payment conversion, and geographic prioritisation will be critical in realising this growth potential.
 
 
 
