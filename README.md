@@ -40,7 +40,7 @@ The strategic recommendations focus on category-specific rewards, payment meth
 
 
 ### Dashboard
-Here is a snippet of the deashboard made using excel. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
+Here is a snippet of the deashboard using Tableau. To access it [click here](https://public.tableau.com/views/TheMitronBank/Dashboarddemographics?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) 
 
 ## 1. Demographic Segment Analysis
 ### 1.1 Age Group Spending Patterns
