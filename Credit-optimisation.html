@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitron Bank Credit Card Analysis — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f1ea;
+    --cream: #ede8df;
+    --gold: #c8922a;
+    --gold-light: #f0d49a;
+    --teal: #1a6b6b;
+    --teal-light: #e0f0f0;
+    --coral: #c94f3c;
+    --coral-light: #fae8e5;
+    --muted: #6b6560;
+    --rule: #d8d2c7;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(6px);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; letter-spacing: .06em;
+    color: var(--muted);
+  }
+  .nav-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--gold-light);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 40px;
+    border: 1px solid var(--gold);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 860px; margin: 0 auto;
+    padding: 80px 40px 60px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex; align-items: center; gap: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--muted);
+    letter-spacing: .06em;
+    margin-bottom: 32px;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+  .hero-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rule); }
+  .hero-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-lead {
+    font-size: 19px; line-height: 1.65;
+    color: var(--muted);
+    max-width: 680px;
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    margin-bottom: 48px;
+  }
+  .hero-rule {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, var(--rule), transparent);
+    margin-bottom: 48px;
+  }
+
+  /* ── BANNER STAT STRIP ── */
+  .stat-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px;
+  }
+  .stat-strip-inner {
+    max-width: 860px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    padding: 0 32px;
+    border-right: 1px solid rgba(255,255,255,.12);
+    text-align: center;
+  }
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; padding-right: 0; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 12px; letter-spacing: .08em;
+    color: rgba(245,241,234,.5);
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── ARTICLE BODY ── */
+  .article-body {
+    max-width: 860px; margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--rule);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -.01em;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  p { margin-bottom: 20px; color: #2d2a26; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION BLOCK ── */
+  .section-block { margin-bottom: 72px; }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin: 32px 0;
+  }
+  .insight-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .insight-card.gold::before { background: var(--gold); }
+  .insight-card.teal::before { background: var(--teal); }
+  .insight-card.coral::before { background: var(--coral); }
+  .insight-card.ink::before { background: var(--ink); }
+  .insight-card-icon {
+    font-size: 28px; margin-bottom: 12px;
+  }
+  .insight-card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .insight-card-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .insight-card.gold .insight-card-value { color: var(--gold); }
+  .insight-card.teal .insight-card-value { color: var(--teal); }
+  .insight-card.coral .insight-card-value { color: var(--coral); }
+  .insight-card-desc { font-size: 14px; color: var(--muted); margin: 0; }
+
+  /* ── BAR CHART ── */
+  .chart-block {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 24px;
+  }
+  .bar-row {
+    display: flex; align-items: center;
+    gap: 16px; margin-bottom: 14px;
+  }
+  .bar-label {
+    font-size: 13px; font-weight: 500;
+    width: 140px; flex-shrink: 0;
+    color: var(--ink);
+  }
+  .bar-track {
+    flex: 1; height: 28px;
+    background: var(--cream);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 12px; font-weight: 500; font-family: 'DM Mono', monospace;
+    color: white;
+    transition: width 1s cubic-bezier(.16,1,.3,1);
+    position: relative;
+  }
+  .bar-fill.gold { background: var(--gold); }
+  .bar-fill.teal { background: var(--teal); }
+  .bar-fill.coral { background: var(--coral); }
+  .bar-fill.ink { background: var(--ink); }
+  .bar-fill.mid { background: #8a7967; }
+
+  /* ── SPENDING TABLE ── */
+  .spend-table {
+    width: 100%; border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+  .spend-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 500;
+  }
+  .spend-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--cream);
+    color: var(--ink);
+    vertical-align: middle;
+  }
+  .spend-table tr:last-child td { border-bottom: none; }
+  .spend-table tr:hover td { background: var(--cream); }
+  .rank-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+  }
+  .rank-1 { background: var(--gold-light); color: var(--gold); }
+  .rank-2 { background: var(--cream); color: var(--muted); }
+  .rank-3 { background: var(--teal-light); color: var(--teal); }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+  .pill-gold { background: var(--gold-light); color: #8a5e10; }
+  .pill-teal { background: var(--teal-light); color: var(--teal); }
+  .pill-coral { background: var(--coral-light); color: var(--coral); }
+  .pill-ink { background: var(--cream); color: var(--muted); }
+
+  /* ── MINI DONUT ── */
+  .donut-row {
+    display: flex; gap: 16px; margin: 32px 0;
+  }
+  .donut-card {
+    flex: 1; background: white;
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 24px; text-align: center;
+  }
+  .donut-wrap { position: relative; width: 90px; height: 90px; margin: 0 auto 12px; }
+  .donut-wrap svg { width: 90px; height: 90px; transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transform: rotate(0);
+  }
+  .donut-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    line-height: 1;
+  }
+  .donut-name {
+    font-size: 12px; font-weight: 500;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .donut-sub { font-size: 11px; color: var(--muted); }
+
+  /* ── PULLQUOTE ── */
+  .pullquote {
+    border-left: 4px solid var(--gold);
+    margin: 40px 0;
+    padding: 24px 32px;
+    background: white;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic;
+    line-height: 1.5; margin: 0;
+    color: var(--ink);
+  }
+
+  /* ── RECOMMENDATION CARDS ── */
+  .rec-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin: 32px 0;
+  }
+  .rec-card {
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 22px 24px;
+    background: white;
+    transition: transform .2s ease;
+  }
+  .rec-card:hover { transform: translateY(-2px); }
+  .rec-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 900;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .rec-title {
+    font-size: 14px; font-weight: 500;
+    margin-bottom: 8px; color: var(--ink);
+  }
+  .rec-desc { font-size: 13px; color: var(--muted); margin: 0; }
+
+  /* ── GEO CARDS ── */
+  .geo-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 10px; margin: 24px 0;
+  }
+  .geo-card {
+    background: white; border: 1px solid var(--rule);
+    border-radius: 4px; padding: 16px 12px;
+    text-align: center;
+  }
+  .geo-city {
+    font-size: 12px; font-weight: 500;
+    color: var(--muted); margin-bottom: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+  .geo-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .geo-bar {
+    height: 4px; border-radius: 2px;
+    background: var(--cream); margin-top: 8px;
+    overflow: hidden;
+  }
+  .geo-bar-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+
+  /* ── AGE SEGMENT ── */
+  .age-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin: 24px 0;
+  }
+  .age-card {
+    background: white; border: 1px solid var(--rule);
+    border-radius: 4px; padding: 20px 16px;
+  }
+  .age-range {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .age-top-cat {
+    font-size: 11px; font-family: 'DM Mono', monospace;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .age-tag {
+    display: inline-block; font-size: 11px;
+    padding: 3px 9px; border-radius: 20px;
+    font-family: 'DM Mono', monospace; margin-top: 4px;
+  }
+  .tag-gold { background: var(--gold-light); color: #7a5010; }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-coral { background: var(--coral-light); color: var(--coral); }
+  .tag-ink { background: var(--cream); color: var(--muted); }
+
+  /* ── CONCLUSION BAND ── */
+  .conclusion-band {
+    background: var(--ink); color: var(--paper);
+    padding: 64px 40px;
+    margin-top: 64px;
+  }
+  .conclusion-inner { max-width: 860px; margin: 0 auto; }
+  .conclusion-band h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 34px; margin-bottom: 20px;
+  }
+  .conclusion-band p { color: rgba(245,241,234,.7); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+    padding: 28px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 100%;
+  }
+  .footer-inner {
+    max-width: 860px; margin: 0 auto; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--muted);
+  }
+  .footer-tools { display: flex; gap: 8px; }
+  .tool-badge {
+    font-size: 11px; font-family: 'DM Mono', monospace;
+    padding: 4px 10px; border-radius: 20px;
+    border: 1px solid var(--rule); color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    .stat-strip-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .stat-item { border-right: none; padding: 0; }
+    .insight-grid, .rec-grid { grid-template-columns: 1fr; }
+    .geo-grid { grid-template-columns: 1fr 1fr; }
+    .age-grid { grid-template-columns: 1fr 1fr; }
+    .donut-row { flex-wrap: wrap; }
+    nav { padding: 14px 20px; }
+    .hero, .article-body { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Portfolio / Data Analysis</span>
+  <span class="nav-tag">Case Study</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero fade-up">
+  <div class="hero-meta">
+    <span>Data Analytics</span>
+    <span class="dot"></span>
+    <span>Banking & Finance</span>
+    <span class="dot"></span>
+    <span>4,000 customers · 5 cities</span>
+  </div>
+  <span class="hero-category">01 — Mitron Bank</span>
+  <h1>Unlocking the <em>Credit Card</em> Opportunity</h1>
+  <p class="hero-lead">A deep-dive into 4,000 customer spending profiles to guide Mitron Bank's new credit card launch — identifying who to target, what to offer, and where to focus first.</p>
+  <a href="https://public.tableau.com/views/TheMitronBankCreditCardAdoptionPotentialInGroceryUPIUsers/Dashboard1?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:white;border:1px solid var(--rule);border-radius:4px;padding:14px 22px;margin-bottom:48px;transition:box-shadow .2s ease,transform .2s ease;" onmouseover="this.style.boxShadow='0 6px 24px rgba(0,0,0,.08)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10.5" y="2" width="3" height="6" rx="1" fill="#c8922a"/><rect x="10.5" y="16" width="3" height="6" rx="1" fill="#c8922a" opacity=".4"/><rect x="2" y="10.5" width="6" height="3" rx="1" fill="#c8922a"/><rect x="16" y="10.5" width="6" height="3" rx="1" fill="#c8922a" opacity=".4"/><rect x="4.5" y="4.5" width="3" height="3" rx=".5" fill="#1a6b6b"/><rect x="16.5" y="16.5" width="3" height="3" rx=".5" fill="#1a6b6b" opacity=".4"/><rect x="4.5" y="16.5" width="3" height="3" rx=".5" fill="#1a6b6b" opacity=".6"/><rect x="16.5" y="4.5" width="3" height="3" rx=".5" fill="#1a6b6b" opacity=".6"/></svg>
+    <span style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--ink)">View Interactive Tableau Dashboard</span>
+    <span style="font-size:13px;color:var(--muted)">↗</span>
+  </a>
+  <div class="hero-rule"></div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat-item">
+      <div class="stat-number">4,000</div>
+      <div class="stat-label">Customers Analysed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Cities Covered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">17.5%</div>
+      <div class="stat-label">Top Category Share</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1.90%</div>
+      <div class="stat-label">Peak Utilisation (Mumbai)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <!-- SECTION 1: OVERVIEW -->
+  <div class="section-block fade-up">
+    <div class="section-label">Background</div>
+    <h2>The Brief</h2>
+    <p>Mitron Bank, a legacy financial institution headquartered in Hyderabad, wants to broaden its product offerings with a new line of credit cards. Before launching, the team needed clarity: <strong>who are the right customers, what do they spend on, and how do they prefer to pay?</strong></p>
+    <p>A sample dataset of 4,000 customers across Mumbai, Delhi NCR, Bengaluru, Hyderabad, and Chennai was analysed — covering income levels, spending categories, payment method preferences, age and occupation.</p>
+
+    <div class="pullquote">
+      <p>"The goal was not to find the average customer — it was to find the right customer."</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: DEMOGRAPHICS -->
+  <div class="section-block fade-up">
+    <div class="section-label">01 — Demographics</div>
+    <h2>Who Are These Customers?</h2>
+    <p>Breaking down the customer base by age reveals distinct spending personalities. Each cohort has different dominant categories and preferred payment methods — insights that should directly shape product design.</p>
+
+    <div class="age-grid">
+      <div class="age-card">
+        <div class="age-range">21–24</div>
+        <div class="age-top-cat">Top: Entertainment</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">24.68% spend on entertainment. Heavy UPI users — a conversion opportunity.</p>
+        <span class="age-tag tag-gold">Credit Card</span>
+        <span class="age-tag tag-coral">UPI</span>
+      </div>
+      <div class="age-card">
+        <div class="age-range">25–34</div>
+        <div class="age-top-cat">Top: Bills</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">22.16% on bills. Credit card dominant — highest conversion potential.</p>
+        <span class="age-tag tag-gold">Credit Card</span>
+      </div>
+      <div class="age-card">
+        <div class="age-range">35–45</div>
+        <div class="age-top-cat">Top: Bills</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">21.66% on bills. Debit card features strongly alongside credit.</p>
+        <span class="age-tag tag-gold">Credit Card</span>
+        <span class="age-tag tag-ink">Debit</span>
+      </div>
+      <div class="age-card">
+        <div class="age-range">45+</div>
+        <div class="age-top-cat">Top: Bills</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">22.51% on bills. Net banking preference signals need for tailored propositions.</p>
+        <span class="age-tag tag-gold">Credit Card</span>
+        <span class="age-tag tag-ink">Net Banking</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: INCOME UTILISATION -->
+  <div class="section-block fade-up">
+    <div class="section-label">02 — Income Utilisation</div>
+    <h2>Who's Ready to Spend?</h2>
+    <p>Average income utilisation is a proxy for credit readiness — the higher it is, the more likely a segment is to adopt and actively use a new credit card. Two occupation groups stand out significantly.</p>
+
+    <div class="chart-block">
+      <div class="chart-title">Avg. Income Utilisation % by Occupation</div>
+      <div class="bar-row">
+        <span class="bar-label">IT Professionals</span>
+        <div class="bar-track"><div class="bar-fill gold" data-width="100" style="width:0%">1.44%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Freelancers</span>
+        <div class="bar-track"><div class="bar-fill teal" data-width="90" style="width:0%">1.29%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Other Salaried</span>
+        <div class="bar-track"><div class="bar-fill mid" data-width="83" style="width:0%">1.19%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Business Owners</span>
+        <div class="bar-track"><div class="bar-fill mid" data-width="65" style="width:0%">0.93%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Government Emp.</span>
+        <div class="bar-track"><div class="bar-fill ink" data-width="57" style="width:0%">0.82%</div></div>
+      </div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Avg. Income Utilisation % by Age Group</div>
+      <div class="bar-row">
+        <span class="bar-label">35–45 years</span>
+        <div class="bar-track"><div class="bar-fill gold" data-width="100" style="width:0%">1.29%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">21–24 years</span>
+        <div class="bar-track"><div class="bar-fill teal" data-width="96" style="width:0%">1.24%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">25–34 years</span>
+        <div class="bar-track"><div class="bar-fill mid" data-width="94" style="width:0%">1.21%</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">45+ years</span>
+        <div class="bar-track"><div class="bar-fill ink" data-width="76" style="width:0%">0.98%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: GEOGRAPHY -->
+  <div class="section-block fade-up">
+    <div class="section-label">03 — Geography</div>
+    <h2>Where Should We Launch?</h2>
+    <p>City-level utilisation data makes the prioritisation clear. Mumbai leads by a wide margin, followed by Delhi NCR. Chennai lags significantly — awareness-building needs to come before acquisition there.</p>
+
+    <div class="geo-grid">
+      <div class="geo-card">
+        <div class="geo-city">Mumbai</div>
+        <div class="geo-val" style="color:var(--gold)">1.90%</div>
+        <div class="geo-bar"><div class="geo-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="geo-card">
+        <div class="geo-city">Delhi NCR</div>
+        <div class="geo-val" style="color:var(--teal)">1.30%</div>
+        <div class="geo-bar"><div class="geo-bar-fill" style="width:68%"></div></div>
+      </div>
+      <div class="geo-card">
+        <div class="geo-city">Bengaluru</div>
+        <div class="geo-val">1.21%</div>
+        <div class="geo-bar"><div class="geo-bar-fill" style="width:64%;background:var(--muted)"></div></div>
+      </div>
+      <div class="geo-card">
+        <div class="geo-city">Hyderabad</div>
+        <div class="geo-val">1.01%</div>
+        <div class="geo-bar"><div class="geo-bar-fill" style="width:53%;background:var(--muted)"></div></div>
+      </div>
+      <div class="geo-card">
+        <div class="geo-city">Chennai</div>
+        <div class="geo-val" style="color:var(--coral)">0.90%</div>
+        <div class="geo-bar"><div class="geo-bar-fill" style="width:47%;background:var(--coral)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SPENDING -->
+  <div class="section-block fade-up">
+    <div class="section-label">04 — Spending Categories</div>
+    <h2>Where the Money Goes</h2>
+    <p>Three categories dominate the spending landscape. The most revealing insight isn't just which categories are popular — it's <em>how</em> customers are paying in each one.</p>
+
+    <table class="spend-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Category</th>
+          <th>Spend Value</th>
+          <th>Share</th>
+          <th>Dominant Payment</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rank-badge rank-1">1</span></td>
+          <td><strong>Bills</strong></td>
+          <td>₹23.78L</td>
+          <td>17.52%</td>
+          <td><span class="pill pill-gold">Credit Card</span></td>
+          <td style="font-size:12px;color:var(--teal)">Reinforce with cashback</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-2">2</span></td>
+          <td><strong>Electronics</strong></td>
+          <td>₹21.67L</td>
+          <td>15.97%</td>
+          <td><span class="pill pill-gold">Credit Card</span></td>
+          <td style="font-size:12px;color:var(--teal)">Reward points program</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-3">3</span></td>
+          <td><strong>Groceries</strong></td>
+          <td>₹19.63L</td>
+          <td>14.96%</td>
+          <td><span class="pill pill-teal">UPI</span></td>
+          <td style="font-size:12px;color:var(--coral)">Conversion opportunity</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-grid">
+      <div class="insight-card gold">
+        <div class="insight-card-icon">💳</div>
+        <div class="insight-card-title">Bills & Electronics</div>
+        <div class="insight-card-value">Credit Card</div>
+        <p class="insight-card-desc">Already dominant — reinforce with high cashback and accelerated reward points to deepen loyalty.</p>
+      </div>
+      <div class="insight-card coral">
+        <div class="insight-card-icon">🛒</div>
+        <div class="insight-card-title">Groceries</div>
+        <div class="insight-card-value">UPI→Card</div>
+        <p class="insight-card-desc">UPI-heavy category with ₹19.6L in spend. Double points or cashback on card payments could shift behaviour.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: PAYMENT BEHAVIOUR -->
+  <div class="section-block fade-up">
+    <div class="section-label">05 — Payment Behaviour</div>
+    <h2>How Each Age Group Pays</h2>
+    <p>Payment method preferences vary sharply by age. Understanding this unlocks the messaging for each segment's credit card proposition.</p>
+
+    <div class="donut-row">
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ede8df" stroke-width="3.2"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#c8922a" stroke-width="3.2"
+              stroke-dasharray="37.11 62.89" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center"><span class="donut-pct" style="color:var(--gold)">37%</span></div>
+        </div>
+        <div class="donut-name">Age 21–24</div>
+        <div class="donut-sub">UPI dominant</div>
+      </div>
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ede8df" stroke-width="3.2"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#1a6b6b" stroke-width="3.2"
+              stroke-dasharray="45 55" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center"><span class="donut-pct" style="color:var(--teal)">45%</span></div>
+        </div>
+        <div class="donut-name">Age 25–34</div>
+        <div class="donut-sub">Credit card dominant</div>
+      </div>
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ede8df" stroke-width="3.2"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#8a7967" stroke-width="3.2"
+              stroke-dasharray="35.38 64.62" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center"><span class="donut-pct" style="color:#8a7967">35%</span></div>
+        </div>
+        <div class="donut-name">Age 35–45</div>
+        <div class="donut-sub">Debit card strong</div>
+      </div>
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ede8df" stroke-width="3.2"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0f0e0c" stroke-width="3.2"
+              stroke-dasharray="19.69 80.31" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center"><span class="donut-pct" style="color:var(--ink)">20%</span></div>
+        </div>
+        <div class="donut-name">Age 45+</div>
+        <div class="donut-sub">Net banking (19.7%)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: RECOMMENDATIONS -->
+  <div class="section-block fade-up">
+    <div class="section-label">06 — Strategy</div>
+    <h2>Five Recommendations</h2>
+    <p>Based on the findings, five strategic levers can drive credit card adoption and usage across Mitron Bank's customer base.</p>
+
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-number">01</div>
+        <div class="rec-title">Target IT Professionals & Freelancers, Age 25–45</div>
+        <p class="rec-desc">Highest utilisation scores. Focus acquisition in Mumbai and Delhi NCR first with tailored messaging around bills and electronics rewards.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">02</div>
+        <div class="rec-title">Category-Specific Reward Design</div>
+        <p class="rec-desc">High cashback on Bills & Electronics reinforces existing habits. Double points on Groceries when paid by card drives UPI conversion.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">03</div>
+        <div class="rec-title">"Switch & Save" Payment Campaigns</div>
+        <p class="rec-desc">Target 21–24 and 35–45 groups showing high UPI/debit usage. Illustrate the tangible benefits of switching to credit card payment.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">04</div>
+        <div class="rec-title">Geographic Rollout Strategy</div>
+        <p class="rec-desc">Mumbai → aggressive acquisition. Delhi NCR → category promotions. Chennai → education-first campaigns to build trust before selling.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">05</div>
+        <div class="rec-title">Segment-Specific Card Products</div>
+        <p class="rec-desc">Lifestyle card for 21–24 (entertainment, online retail). Utility & travel card for 35–45. Essential-spend cashback card for 45+.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">KPI</div>
+        <div class="rec-title">Success Metrics to Track</div>
+        <p class="rec-desc">Credit card adoption rate by segment · Category-level spend shift · UPI-to-card conversion rate · City-wise activation volumes.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONCLUSION BAND -->
+<div class="conclusion-band">
+  <div class="conclusion-inner">
+    <div class="section-label" style="color:var(--gold);border-right: none;">07 — Conclusion</div>
+    <h2>The Takeaway</h2>
+    <p>Credit card adoption potential is concentrated in a clear sweet spot: customers aged 25–45, in IT and freelance occupations, based in Mumbai and Delhi NCR. Bills and Electronics are already credit-card-friendly; Groceries represent the biggest conversion prize.</p>
+    <p>By building reward structures around these specific patterns — rather than generic offers — Mitron Bank can drive both immediate adoption and long-term loyalty. The data doesn't just tell us who to target; it tells us exactly <em>why</em> they'll say yes.</p>
+
+    <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;flex:1;min-width:160px;">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,241,234,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Primary Target</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold-light)">Age 25–45 · IT & Freelance</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;flex:1;min-width:160px;">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,241,234,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Priority Markets</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold-light)">Mumbai · Delhi NCR</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;flex:1;min-width:160px;">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,241,234,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Key Opportunity</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold-light)">Grocery UPI conversion</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-note">Mitron Bank · Credit Card Analysis · Portfolio Case Study</span>
+    <div class="footer-tools">
+      <span class="tool-badge">SQL</span>
+      <span class="tool-badge">Tableau</span>
+      <span class="tool-badge">Python</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Animate bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        if (el.target.classList.contains('chart-block') || el.target.closest('.chart-block')) {
+          el.target.querySelectorAll('.bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+        }
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Trigger bars when chart-blocks come into view
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 100);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.chart-block').forEach(el => barObserver.observe(el));
+
+  // Initial fade-up for hero
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 100);
+</script>
+</body>
+</html>
